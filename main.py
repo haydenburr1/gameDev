@@ -1,20 +1,20 @@
 import pygame as pg 
+from settings import *
 import sys
 
-FPS = 60
-
 class App:
-    def __init__(self) -> None:
+    def __init__(self):
         pg.init()
-        self.screen = pg.display.set_mode((800, 400))
+        self.screen = pg.display.set_mode(RES)
         self.clock = pg.time.Clock()
-    
+       
     def game_loop(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
     
+
     def draw(self):
         pass
     
@@ -27,8 +27,7 @@ class App:
             self.game_loop()
             self.draw()
             self.update()
-            
+    
 if __name__ == "__main__":
     app = App()
     app.run()
-    
