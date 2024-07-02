@@ -13,7 +13,7 @@ class App:
         
         # variables for blitting
         self.font_surf = self.font.render("hello world", False, (255, 255, 255))
-        self.font_rect = self.font_surf.get_rect(center=(HALF_RES))
+        self.font_rect = self.font_surf.get_rect(center=HALF_RES)
        
     def game_loop(self):
         # basic game loop
