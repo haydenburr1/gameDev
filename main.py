@@ -11,7 +11,6 @@ class App:
         self.clock = pg.time.Clock()
         self.font = pg.font.Font(None, 50)
         
-        
         # variables for blitting
         self.font_surf = self.font.render("hello world", False, (255, 255, 255))
         self.font_rect = self.font_surf.get_rect(center=(HALF_RES))
