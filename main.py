@@ -10,14 +10,13 @@ class App:
         # variables for screen creation
         self.screen = pg.display.set_mode(RES)
         self.clock = pg.time.Clock()
-        self.font = pg.font.Font(None, 50)
-        
+    
         # variables for blitting
-        self.font_surf = self.font.render("hello world", False, (255, 255, 255))
-        self.font_rect = self.font_surf.get_rect(center=HALF_RES)
-        
         self.player = Player()
-       
+        
+        self.test_surf = pg.image.load("assets/plane.png")
+        self.test_rect = self.test_surf.get_rect(center=HALF_RES)
+        
     def game_loop(self):
         # basic game loop
         # TODO: controls for when neded 
@@ -31,7 +30,7 @@ class App:
         self.screen.fill("white")
         #self.screen.blit(self.font_surf, self.font_rect)
         self.player.draw(self.screen)
-    
+        
     def update(self):
         # for updating rects and other variables, do it here 
         pg.display.update()

@@ -10,22 +10,15 @@ class Player(pg.sprite.Sprite):
         self.rect = self.img.get_rect(center=HALF_RES)
         
         self.theta = 0
-        self.radius = 10
+        self.radius = 5
     
     def draw(self, screen):
         screen.blit(self.img, self.rect)
         self.movement()
-        self.controls()
         
     def movement(self):
-        player_pos = pg.Vector2(WIDTH +math.sin(self.theta) * self.radius,  HEIGHT + math.cos(self.theta) * self.radius)
-        self.rect.x += player_pos.x
-        self.rect.y += player_pos.y
+        player_pos = pg.Vector2(HALF_WIDTH + math.sin(self.theta) * self.radius,  HALF_HEIGHT + math.cos(self.theta) * self.radius)
+        self.rect.x += math.sin(self.theta) * self.radius
+        self.rect.y += math.cos(self.theta) * self.radius
         
-    def controls(self):
-        # TODO
-        keys = pg.key.get_pressed()
-        if keys[pg.K_SPACE]:
-            self.radius += 1
-        
-        
+        self.theta += 0.1
