@@ -8,7 +8,7 @@ class Player(pg.sprite.Sprite):
         super().__init__()
         
         self.theta = 0
-        self.radius = 10
+        self.radius = 15
         
         self.img = pg.image.load("assets/plane.png")
         self.rect = self.img.get_rect(center=(HALF_WIDTH - (math.sin(self.theta) * 100), HALF_HEIGHT - (math.cos(self.theta) * 100)))

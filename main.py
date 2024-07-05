@@ -36,6 +36,7 @@ class App:
         # for updating rects and other variables, do it here 
         pg.display.update()
         self.clock.tick(FPS)
+        pg.display.set_caption(f"fps: {self.clock.get_fps():.2f}")
         
     def run(self):
         while True:
