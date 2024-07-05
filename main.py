@@ -13,7 +13,6 @@ class App:
     
         # variables for blitting
         self.player = Player()
-        
         #planet vars
         self.planet_surf = pg.image.load("assets/planet2.png").convert_alpha()
         self.planet_rect = self.planet_surf.get_rect(center=HALF_RES)

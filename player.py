@@ -11,15 +11,16 @@ class Player(pg.sprite.Sprite):
         
         # Initialize parameters
         self.theta = 0
-        self.radius = 200
-        self.speed = 0.1
+        self.radius = 200 # pixels
+        self.speed = 0.01
         
         # Load the image and set the rect
         self.img = pg.image.load("assets/plane.png").convert_alpha()
         self.rect = self.img.get_rect(center=(HALF_WIDTH, HALF_HEIGHT))
     
     def draw(self, screen):
-        screen.blit(self.img, self.rect)
+        screen.blit(pg.transform.rotate(self.img, math.degrees(self.theta)), self.rect)
+        print(self.theta)
         self.movement()
     
     def movement(self):
@@ -31,3 +32,7 @@ class Player(pg.sprite.Sprite):
         
         # Increment theta to move
         self.theta += self.speed
+    
+    def controls(self):
+        pass
+    
