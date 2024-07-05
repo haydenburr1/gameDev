@@ -1,6 +1,7 @@
 import pygame as pg 
 from settings import *
 import sys
+from player import Player
 
 class App:
     def __init__(self):
@@ -14,6 +15,8 @@ class App:
         # variables for blitting
         self.font_surf = self.font.render("hello world", False, (255, 255, 255))
         self.font_rect = self.font_surf.get_rect(center=HALF_RES)
+        
+        self.player = Player()
        
     def game_loop(self):
         # basic game loop
@@ -25,7 +28,9 @@ class App:
                 
     def draw(self):
         # blitting to the screen. avoid anything else in this method 
-        self.screen.blit(self.font_surf, self.font_rect)
+        self.screen.fill("white")
+        #self.screen.blit(self.font_surf, self.font_rect)
+        self.player.draw(self.screen)
     
     def update(self):
         # for updating rects and other variables, do it here 
