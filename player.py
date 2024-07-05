@@ -6,11 +6,12 @@ import math
 class Player(pg.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
-        self.img = pg.image.load("assets/plane.png")
-        self.rect = self.img.get_rect(center=HALF_RES)
-        
         self.theta = 0
-        self.radius = 5
+        self.radius = 10
+        self.img = pg.image.load("assets/plane.png").convert_alpha()
+        self.rect = self.img.get_rect(topleft=(HALF_WIDTH,HALF_HEIGHT))
+        
+        
 
     def draw(self, screen):
         screen.blit(self.img, self.rect)

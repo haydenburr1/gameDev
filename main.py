@@ -14,8 +14,9 @@ class App:
         # variables for blitting
         self.player = Player()
         
-        self.test_surf = pg.image.load("assets/plane.png")
-        self.test_rect = self.test_surf.get_rect(center=HALF_RES)
+        #planet vars
+        self.planet_surf = pg.image.load("assets/planet.png").convert_alpha()
+        self.planet_rect = self.planet_surf.get_rect(center = HALF_RES)
         
     def game_loop(self):
         # basic game loop
@@ -27,8 +28,8 @@ class App:
                 
     def draw(self):
         # blitting to the screen. avoid anything else in this method 
-        self.screen.fill("white")
-        #self.screen.blit(self.font_surf, self.font_rect)
+        self.screen.fill("black")
+        self.screen.blit(self.planet_surf,self.planet_rect)        
         self.player.draw(self.screen)
         
     def update(self):
