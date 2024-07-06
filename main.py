@@ -44,7 +44,6 @@ class App:
             self.draw()
             self.update()
 
-# needed to run
 if __name__ == "__main__":
     app = App()
     app.run()

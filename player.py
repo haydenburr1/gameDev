@@ -1,9 +1,7 @@
 import pygame as pg
 from settings import *
 import math
-
-import pygame as pg
-import math
+import sys
 
 class Player(pg.sprite.Sprite):
     def __init__(self) -> None:
@@ -13,6 +11,7 @@ class Player(pg.sprite.Sprite):
         self.theta = 0
         self.radius = 200 # pixels
         self.speed = 0.05
+        self.speed_multiplier = 0.1
 
         self.gravity = 0
         
@@ -33,10 +32,14 @@ class Player(pg.sprite.Sprite):
         )
         
         # gravity
-        self.gravity += 0.1
+        #self.gravity += 0.1
         
     def controls(self):
         keys = pg.key.get_pressed()
+        
+        if(self.speed_multiplier > 10):
+            pg.quit()
+            sys.exit()
         # space bar controls
         if keys[pg.K_SPACE]:
             self.radius += 2
@@ -44,7 +47,8 @@ class Player(pg.sprite.Sprite):
     
         # movement clockwise and anti-clockwise
         if keys[pg.K_LEFT]:
-            self.theta += self.speed
+            self.theta += self.speed * self.speed_multiplier
+            self.speed_multiplier += 0.2
         if keys[pg.K_RIGHT]:
             self.theta -= self.speed
 
@@ -52,4 +56,3 @@ class Player(pg.sprite.Sprite):
             self.radius -= 2 * self.gravity
 
         
-    
