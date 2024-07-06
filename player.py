@@ -37,9 +37,14 @@ class Player(pg.sprite.Sprite):
     def controls(self):
         keys = pg.key.get_pressed()
         
+        #freezing the character so this code cant mess up something later
+        #need to figure out how to display a game over screen cant get 'screen.blit to work or 'screen.fill' im probebly being stupid but
+        #i cant figure it out
         if(self.speed_multiplier > 10):
-            pg.quit()
-            sys.exit()
+            self.speed = 0 
+            self.gravity = 0
+            self.radius = 5
+            
         # space bar controls
         if keys[pg.K_SPACE]:
             self.radius += 2

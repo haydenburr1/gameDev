@@ -30,16 +30,16 @@ class App:
         self.screen.fill("black")
         self.screen.blit(self.planet_surf,self.planet_rect)        
         self.player.draw(self.screen)
-        
+    
     def update(self):
         # for updating rects and other variables, do it here 
-        pg.display.update()
-        self.clock.tick(FPS)
-        pg.display.set_caption(f"fps: {self.clock.get_fps():.2f}")
+           pg.display.update()
+           self.clock.tick(FPS)
+           pg.display.set_caption(f"fps: {self.clock.get_fps():.2f}")
         
     def run(self):
         while True:
-            # add functions as per...
+           # add functions as per...
             self.game_loop()
             self.draw()
             self.update()
