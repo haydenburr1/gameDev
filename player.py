@@ -11,7 +11,7 @@ class Player(pg.sprite.Sprite):
         self.theta = 0
         self.radius = 200 # pixels
         self.speed = 0.05
-        self.speed_multiplier = 0.1
+        self.speed_multiplier = 0
 
         self.gravity = 0
         
@@ -37,27 +37,38 @@ class Player(pg.sprite.Sprite):
     def controls(self):
         keys = pg.key.get_pressed()
         
-        #freezing the character so this code cant mess up something later
-        #need to figure out how to display a game over screen cant get 'screen.blit to work or 'screen.fill' im probebly being stupid but
-        #i cant figure it out
-        if(self.speed_multiplier > 10):
-            self.speed = 0 
-            self.gravity = 0
-            self.radius = 5
+        if self.speed_multiplier > MAX_SPEED:
+            game_active = False
+            self.speed_multiplier = MAX_SPEED
             
         # space bar controls
         if keys[pg.K_SPACE]:
-            self.radius += 2
+            self.radius += RADIUS_INCRAMENT
             self.gravity = 0
     
         # movement clockwise and anti-clockwise
         if keys[pg.K_LEFT]:
             self.theta += self.speed * self.speed_multiplier
-            self.speed_multiplier += 0.2
-        if keys[pg.K_RIGHT]:
-            self.theta -= self.speed
+            self.speed_multiplier += SPEED_MULTIPLIER_INCRAMENT
 
-        if(self.radius > 0 and not keys[pg.K_SPACE]):
-            self.radius -= 2 * self.gravity
+        if keys[pg.K_RIGHT]:
+            self.theta -= self.speed * self.speed_multiplier
+            self.speed_multiplier += SPEED_MULTIPLIER_INCRAMENT
+            
+        if not (keys[pg.K_LEFT] or keys[pg.K_RIGHT]):
+            self.speed_multiplier = 0
+
+        # gravity
+        if self.radius > 0 and not keys[pg.K_SPACE]:
+            self.radius -= self.gravity
+        
+        # this can be used for debugging
+        """"
+        if keys[pg.K_DOWN]:
+            self.radius -= 2
+        if keys[pg.K_UP]:
+            self.radius += 2
+        """
+        
 
         

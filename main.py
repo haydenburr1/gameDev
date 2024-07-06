@@ -30,6 +30,10 @@ class App:
         self.screen.fill("black")
         self.screen.blit(self.planet_surf,self.planet_rect)        
         self.player.draw(self.screen)
+        
+        if self.planet_rect.colliderect(self.player.rect):
+            print("game over")
+    
     
     def update(self):
         # for updating rects and other variables, do it here 
