@@ -31,8 +31,10 @@ class App:
         self.screen.blit(self.planet_surf,self.planet_rect)        
         self.player.draw(self.screen)
         
+    def collisions(self):
         if self.planet_rect.colliderect(self.player.rect):
             print("game over")
+            game_active = False
     
     
     def update(self):
@@ -46,6 +48,7 @@ class App:
            # add functions as per...
             self.game_loop()
             self.draw()
+            self.collisions()
             self.update()
 
 if __name__ == "__main__":

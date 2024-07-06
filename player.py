@@ -38,7 +38,6 @@ class Player(pg.sprite.Sprite):
         keys = pg.key.get_pressed()
         
         if self.speed_multiplier > MAX_SPEED:
-            game_active = False
             self.speed_multiplier = MAX_SPEED
             
         # space bar controls
