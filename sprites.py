@@ -1,7 +1,7 @@
 import pygame as pg
 from settings import *
 import math
-from random import randint
+from random import randint, choice
 
 
 class Player(pg.sprite.Sprite):
@@ -71,16 +71,23 @@ class Player(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
+ 
     def __init__(self) -> None:
         super().__init__()
+        
+        img_list = [
+        "assets\pixel_ship_blue_small.png",
+        "assets\pixel_ship_green_small.png",
+        "assets\pixel_ship_red_small.png"
+        ]
         
         self.radius = 300  # pixels
         self.speed = randint(1, 3) / 10
         
         self.theta = randint(0, 360)
         
-        self.img = pg.image.load("assets/pixel_ship_red_small.png")
-        self.rect = self.img.get_rect(center=HALF_RES) 
+        self.image = pg.image.load(choice(img_list))
+        self.rect = self.image.get_rect(center=HALF_RES) 
         
     def draw(self, screen):
         self.rect.center = (
@@ -88,6 +95,6 @@ class Enemy(pg.sprite.Sprite):
             HALF_HEIGHT + math.cos(self.theta) * self.radius
         )
         
-        screen.blit(pg.transform.rotate(self.img, math.degrees(self.theta)), self.rect)
+        screen.blit(pg.transform.rotate(self.image, math.degrees(self.theta)), self.rect)
         
         self.radius -= self.speed

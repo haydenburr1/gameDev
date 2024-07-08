@@ -14,7 +14,6 @@ class App:
     
         # variables for blitting
         self.player = Player()
-
         self.enemy_list = [Enemy() for _ in range(NO_OF_ENEMIES)]
         
         # planet vars
@@ -24,7 +23,6 @@ class App:
     @staticmethod
     def game_loop():
         # basic game loop
-        # TODO: controls for when neded 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
@@ -35,18 +33,15 @@ class App:
         self.screen.fill("black")
         self.screen.blit(self.planet_surf, self.planet_rect)
         self.player.draw(self.screen)
-        
+
         for enemy in self.enemy_list:
             enemy.draw(self.screen)
-        
+
     def collisions(self):
         if self.planet_rect.colliderect(self.player.rect):
             self.player.gravity = 0
         
-        for enemy in self.enemy_list:
-            if self.player.rect.colliderect(enemy.rect):
-                # self.enemy_list.remove(enemy)
-                pass
+        #pg.sprite.spritecollide(self.player, self.enemy_list, True)
 
     def update(self):
         # for updating rects and other variables, do it here 
