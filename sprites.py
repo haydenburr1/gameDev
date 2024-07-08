@@ -1,7 +1,8 @@
 import pygame as pg
 from settings import *
 import math
-import sys
+from random import randint
+
 
 class Player(pg.sprite.Sprite):
     def __init__(self) -> None:
@@ -9,7 +10,7 @@ class Player(pg.sprite.Sprite):
         
         # Initialize parameters
         self.theta = 0
-        self.radius = 200 # pixels
+        self.radius = 200  # pixels
         self.speed = 0.05
         self.speed_multiplier = 0
 
@@ -17,7 +18,7 @@ class Player(pg.sprite.Sprite):
         
         # Load the image and set the rect
         self.img = pg.image.load("assets/plane.png").convert_alpha()
-        self.rect = self.img.get_rect(center=(HALF_WIDTH, HALF_HEIGHT))
+        self.rect = self.img.get_rect(center=HALF_RES)
     
     def draw(self, screen):
         screen.blit(pg.transform.rotate(self.img, math.degrees(self.theta)), self.rect)
@@ -33,8 +34,7 @@ class Player(pg.sprite.Sprite):
         
         # gravity
 
-        
-        self.gravity += 0.1
+        # self.gravity += 0.1
         
     def controls(self):
         keys = pg.key.get_pressed()
@@ -63,12 +63,31 @@ class Player(pg.sprite.Sprite):
             self.speed_multiplier = 0
             
         # this can be used for debugging
-        """"
+        
         if keys[pg.K_DOWN]:
             self.radius -= 2
         if keys[pg.K_UP]:
             self.radius += 2
-        """
-        
 
+
+class Enemy(pg.sprite.Sprite):
+    def __init__(self) -> None:
+        super().__init__()
         
+        self.radius = 300  # pixels
+        self.speed = randint(1, 3) / 10
+        
+        self.theta = randint(0, 360)
+        
+        self.img = pg.image.load("assets/pixel_ship_red_small.png")
+        self.rect = self.img.get_rect(center=HALF_RES) 
+        
+    def draw(self, screen):
+        self.rect.center = (
+            HALF_WIDTH + math.sin(self.theta) * self.radius,
+            HALF_HEIGHT + math.cos(self.theta) * self.radius
+        )
+        
+        screen.blit(pg.transform.rotate(self.img, math.degrees(self.theta)), self.rect)
+        
+        self.radius -= self.speed
