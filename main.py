@@ -33,8 +33,7 @@ class App:
         
     def collisions(self):
         if self.planet_rect.colliderect(self.player.rect):
-            print("game over")
-            game_active = False
+            self.player.gravity = 0
     
     
     def update(self):
@@ -47,8 +46,8 @@ class App:
         while True:
            # add functions as per...
             self.game_loop()
-            self.draw()
             self.collisions()
+            self.draw()
             self.update()
 
 if __name__ == "__main__":

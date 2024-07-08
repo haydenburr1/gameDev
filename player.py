@@ -32,10 +32,15 @@ class Player(pg.sprite.Sprite):
         )
         
         # gravity
-        #self.gravity += 0.1
+
+        
+        self.gravity += 0.1
         
     def controls(self):
         keys = pg.key.get_pressed()
+        
+        if self.radius > 0 and not keys[pg.K_SPACE]:
+            self.radius -= self.gravity
         
         if self.speed_multiplier > MAX_SPEED:
             self.speed_multiplier = MAX_SPEED
@@ -56,11 +61,7 @@ class Player(pg.sprite.Sprite):
             
         if not (keys[pg.K_LEFT] or keys[pg.K_RIGHT]):
             self.speed_multiplier = 0
-
-        # gravity
-        if self.radius > 0 and not keys[pg.K_SPACE]:
-            self.radius -= self.gravity
-        
+            
         # this can be used for debugging
         """"
         if keys[pg.K_DOWN]:
