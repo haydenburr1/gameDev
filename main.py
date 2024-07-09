@@ -12,7 +12,7 @@ class App:
         self.screen = pg.display.set_mode(RES)
         self.clock = pg.time.Clock()
     
-        # variables for blitting
+        # variables for rendering
         self.player = Player()
         self.enemy_list = [Enemy() for _ in range(NO_OF_ENEMIES)]
         
@@ -28,7 +28,7 @@ class App:
                 sys.exit()
                 
     def draw(self):
-        # blitting to the screen. avoid anything else in this method 
+        # blit to the screen. avoid anything else in this method
         self.screen.fill("black")
         self.screen.blit(self.planet_surf, self.planet_rect)
         self.player.draw(self.screen)
@@ -40,12 +40,12 @@ class App:
         if self.planet_rect.colliderect(self.player.rect):
             self.player.gravity = 0
 
-        # both these methods dont work. 
+        # both these methods don't work.
         """
         for enemy in self.enemy_list:
             if self.player.rect.colliderect(enemy.rect):
                 self.enemy_list.remove(enemy)
-        
+
         self.enemy_list = [enemy for enemy in self.enemy_list if not self.player.rect.colliderect(enemy.rect)]
         """
         
