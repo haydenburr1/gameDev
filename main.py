@@ -41,13 +41,13 @@ class App:
             self.player.gravity = 0
 
         # both these methods don't work.
-        """
+        
         for enemy in self.enemy_list:
             if self.player.rect.colliderect(enemy.rect):
                 self.enemy_list.remove(enemy)
 
-        self.enemy_list = [enemy for enemy in self.enemy_list if not self.player.rect.colliderect(enemy.rect)]
-        """
+        # self.enemy_list = [enemy for enemy in self.enemy_list if not self.player.rect.colliderect(enemy.rect)]
+        
         
     def update(self):
         # for updating rects and other variables, do it here 
